@@ -1,0 +1,28 @@
+/* Hear Me Out - base styles
+   Keep it plain for now. We'll add to this as issues get worked. */
+
+body {
+  font-family: serif;
+  margin: 20px;
+}
+
+h1 {
+  font-size: 32px;
+  margin-bottom: 0;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #000;
+  padding: 4px 8px;
+  text-align: left;
+}
+
+.bottom {
+  margin-top: 40px;
+  font-size: 12px;
+}
