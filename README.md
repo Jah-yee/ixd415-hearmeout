@@ -6,7 +6,8 @@ Live site: https://mattkirkland.github.io/ixd415-hearmeout/
 
 ## What's in here
 
-- `index.html` - the one page
+- `index.html` - the schedule page
+- `howto.html` - how to work an issue (same steps as below, for the class)
 - `style.css` - styles (there aren't many yet)
 - `script.js` - page scripts (there's almost nothing here yet)
 

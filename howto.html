@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How to work an issue - Hear Me Out</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="top">
+    <h1>How to work an issue</h1>
+    <p><a href="index.html">Back to the schedule</a></p>
+  </div>
+
+  <div class="content">
+
+    <p>
+      This is the whole loop we'll use for the rest of the semester: pick an issue, make a
+      branch, change something, open a pull request, review it together in class. The site
+      is small and unfinished on purpose, so there is plenty to fix.
+    </p>
+    <p>
+      Repo: <a href="https://github.com/mattkirkland/ixd415-hearmeout">github.com/mattkirkland/ixd415-hearmeout</a><br>
+      Live site: <a href="https://mattkirkland.github.io/ixd415-hearmeout/">mattkirkland.github.io/ixd415-hearmeout</a>
+    </p>
+    <p>
+      Before you start you need a GitHub account, git installed, your terminal (Git Bash on
+      Windows, Terminal on Mac), and a code editor. If you set these up earlier in the course
+      you're ready. Commands below go in the terminal, one line at a time.
+    </p>
+
+    <h2>Step 1. Get the repo onto your computer</h2>
+    <p>
+      You only do this once. Clone makes a full copy of the repo, history included, in a
+      folder on your machine.
+    </p>
+<pre>cd ~/Sites
+git clone https://github.com/mattkirkland/ixd415-hearmeout.git
+cd ixd415-hearmeout</pre>
+    <p>
+      Use whatever folder you keep projects in instead of <code>~/Sites</code>. If git asks
+      you to sign in, use your GitHub username and a personal access token, or sign in
+      through GitHub Desktop if you'd rather.
+    </p>
+    <p>
+      Check that it worked: <code>ls</code> should show <code>index.html</code>,
+      <code>style.css</code>, <code>script.js</code>, and <code>README.md</code>. Open
+      <code>index.html</code> in a browser. That's the site.
+    </p>
+    <p>If you've already cloned it before, skip the clone and just make sure you're up to date:</p>
+<pre>git checkout main
+git pull</pre>
+
+    <h2>Step 2. Pick an issue and claim it</h2>
+    <p>
+      Go to the <a href="https://github.com/mattkirkland/ixd415-hearmeout/issues">Issues tab</a>.
+    </p>
+    <p>
+      Each issue is one small, self-contained change. Labels say what kind of work it is
+      (<code>html</code>, <code>css</code>, <code>js</code>, <code>content</code>,
+      <code>a11y</code>). The ones marked <code>good first issue</code> are the smallest;
+      start there if this is your first time through the loop.
+    </p>
+    <p>
+      Open the issue you want and leave a comment: "I'll take this one." That's how everyone
+      else knows not to pick it. If someone already claimed it, pick another.
+    </p>
+    <p>
+      Note the issue number. You'll use it in your branch name and your commit message, which
+      is how GitHub connects your work back to the issue.
+    </p>
+
+    <h2>Step 3. Make a branch</h2>
+    <p>
+      A branch is a separate line of work. You make your change there, not on
+      <code>main</code>, so the live site stays intact until we've reviewed it.
+    </p>
+    <p>Start from an up-to-date <code>main</code>, then make a branch named for your issue:</p>
+<pre>git checkout main
+git pull
+git checkout -b issue-16-dark-mode</pre>
+    <p>
+      Name it <code>issue-&lt;number&gt;-&lt;a-few-words&gt;</code>. Lowercase, hyphens, no
+      spaces. <code>git checkout -b</code> creates the branch and switches you to it in one step.
+    </p>
+    <p>
+      To see where you are at any time: <code>git branch</code>. The one with the asterisk is
+      the branch you're on.
+    </p>
+
+    <h2>Step 4. Make the change and check it</h2>
+    <p>
+      Open the project folder in your editor and do what the issue asks. Most issues touch
+      one file; the issue says which.
+    </p>
+    <p>
+      Check your work by opening <code>index.html</code> in a browser and reloading. There's
+      no build step, so what you see is what will go live.
+    </p>
+    <p>
+      Stay inside the issue. If you notice something else that's broken, leave it and open a
+      new issue for it. One issue, one branch, one pull request keeps reviews short.
+    </p>
+    <p>
+      <code>git status</code> shows which files you've changed. <code>git diff</code> shows
+      exactly what changed, line by line. Both are worth running before you commit.
+    </p>
+
+    <h2>Step 5. Commit and push</h2>
+    <p>A commit is a saved snapshot with a message. Push sends your branch up to GitHub.</p>
+<pre>git add .
+git commit -m "Add dark mode (closes #16)"
+git push -u origin issue-16-dark-mode</pre>
+    <p>
+      Write the message as a short sentence saying what you did. Include <code>closes #16</code>
+      (your issue number) and GitHub will close the issue automatically when the PR is merged.
+    </p>
+    <p>
+      The <code>-u origin &lt;branch&gt;</code> part is only needed the first time you push a
+      new branch. After that, <code>git push</code> on its own works.
+    </p>
+    <p>If git stops and asks for your name and email, set them once and try the commit again:</p>
+<pre>git config --global user.name "Your Name"
+git config --global user.email "you@example.com"</pre>
+
+    <h2>Step 6. Open a pull request</h2>
+    <p>
+      A pull request (PR) is a request to merge your branch into <code>main</code>, with a
+      place to talk about it first.
+    </p>
+    <p>
+      After you push, go to the repo on GitHub. There's usually a yellow banner offering to
+      open a PR for the branch you just pushed. Click <strong>Compare &amp; pull request</strong>.
+      If the banner isn't there, go to the Pull requests tab and click
+      <strong>New pull request</strong>, then pick your branch.
+    </p>
+    <p>Fill in:</p>
+    <ul>
+      <li><strong>Title.</strong> What you did, in a few words. Your commit message is usually fine.</li>
+      <li><strong>Description.</strong> Which issue this closes (<code>Closes #16</code>), what
+        you changed, and anything the reviewer should look at or try. If it's a visual change,
+        paste a screenshot.</li>
+    </ul>
+    <p>
+      Make sure the base is <code>main</code> and the compare is your branch, then click
+      <strong>Create pull request</strong>.
+    </p>
+    <p>
+      You can keep working after this. Any new commits you push to the same branch show up in
+      the PR automatically.
+    </p>
+
+    <h2>Step 7. Review together, merge, see it live</h2>
+    <p>
+      We'll go through open PRs in class. The reviewer reads the diff (the Files changed tab),
+      leaves comments on specific lines if there's something to discuss, and either approves
+      or asks for changes.
+    </p>
+    <p>
+      If changes are requested, make them on the same branch, commit, and push. The PR updates
+      itself. You don't open a new one.
+    </p>
+    <p>
+      When it's approved, click <strong>Merge pull request</strong>, then
+      <strong>Confirm merge</strong>. Your change is now on <code>main</code>. GitHub Pages
+      rebuilds the live site within a minute or two; reload the live site to see it.
+    </p>
+    <p>After the merge, get back on <code>main</code> and pull so your copy matches:</p>
+<pre>git checkout main
+git pull</pre>
+    <p>Then pick the next issue and start again from Step 2.</p>
+
+    <h2>If something goes wrong</h2>
+    <p>
+      <strong>I made changes on <code>main</code> by mistake.</strong> As long as you haven't
+      committed, you can move them to a new branch: <code>git checkout -b issue-16-dark-mode</code>
+      carries your uncommitted changes with you. Then continue from Step 5.
+    </p>
+    <p>
+      <strong>Push was rejected.</strong> Usually you forgot <code>-u origin &lt;branch&gt;</code>
+      the first time, or you're on <code>main</code>. Run <code>git branch</code> to check, then
+      push again with the full command from Step 5.
+    </p>
+    <p>
+      <strong>My PR says it has conflicts.</strong> Someone merged a change to the same lines
+      before you. Ask in class; we'll resolve it together. It's a normal thing to run into and
+      worth seeing once.
+    </p>
+    <p>
+      <strong>I want to throw my change away and start over.</strong> <code>git checkout main</code>,
+      then <code>git branch -D issue-16-dark-mode</code> deletes the branch. Your clone is a
+      copy; nothing you do locally can break the repo on GitHub.
+    </p>
+    <p>
+      <strong>I don't know what state I'm in.</strong> <code>git status</code> is always safe
+      to run and usually tells you what to do next. If it doesn't make sense, ask. Nobody is
+      expected to know git by heart.
+    </p>
+
+  </div>
+
+  <div class="bottom">
+    <p>IXD 415</p>
+  </div>
+
+</body>
+</html>
