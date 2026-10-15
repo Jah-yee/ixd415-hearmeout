@@ -22,14 +22,14 @@ No build step, no dependencies. Open `index.html` in a browser and it works.
    ```
 3. Make a branch named for the issue:
    ```
-   git checkout -b issue-12-dark-mode
+   git checkout -b issue-16-dark-mode
    ```
 4. Make your change. Open `index.html` in a browser to check it.
 5. Commit and push your branch:
    ```
    git add .
-   git commit -m "Add dark mode (closes #12)"
-   git push -u origin issue-12-dark-mode
+   git commit -m "Add dark mode (closes #16)"
+   git push -u origin issue-16-dark-mode
    ```
 6. Open a pull request on GitHub. In the description, say which issue it closes and anything the reviewer should look at.
 7. We'll review PRs together in class. Once merged, the live site updates in a minute or two.
